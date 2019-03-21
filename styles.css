@@ -1,5 +1,6 @@
 body {
   background-color: orange;
+  padding-top: 20px;
 }
 
 a {
@@ -8,23 +9,29 @@ a {
 }
 
 a:hover {
-  font-size: 1.2em;
-  text-decoration: underline;
+  font-size: 1.1em;
+  text-decoration: none;
   color: black;
 }
 
 #title {
-  width: 500px;
+  color: #0c0c0c;
+  background-color: rgba(68, 68, 68, 0.4);
   margin: 0 auto;
   text-align: center;
-  font-family: Impact, Charcoal, sans-serif;
+  font-family: Verdana, Geneva, sans-serif;
   font-size: 30px;
+  text-shadow: 3px 2px 7px #333333;
+  padding: 75px;
 }
 
 #links {
-  width: 400px;
   margin: 0 auto;
   text-align: center;
-  font-family: "Trebuchet MS", Helvetica, sans-serif;
-  font-size: 20px;
+}
+
+h3 > a {
+  font-size: 22px;
+  font-family: Verdana, Geneva, sans-serif;
+  text-shadow: 3px 2px 5px;
 }
