@@ -60,8 +60,8 @@ function keyUpHandler(e) {
 function mouseMoveHandler(e) {
   var relativeX = e.clientX - canvas.offsetLeft;
   if (
-    relativeX > paddleWidth / 2 &&
-    relativeX < canvas.width - paddleWidth / 2
+    relativeX > paddleWidth / 2 - 10 &&
+    relativeX < canvas.width - paddleWidth / 2 + 10
   ) {
     paddleX = relativeX - paddleWidth / 2;
   }
