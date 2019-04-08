@@ -151,7 +151,7 @@ function blink() {
     canvas.style.display = canvas.style.display == "none" ? "" : "none";
   }, 50);
   setTimeout(function() {
-    f.style.display = f.style.display == "none" ? "" : "none";
+    canvas.style.display = canvas.style.display == "none" ? "" : "none";
   }, 200);
 }
 // score
