@@ -35,66 +35,6 @@ for (var c = 0; c < brickColumnCount; c++) {
   }
 }
 
-// this is where the magic happens
-function draw() {
-  context.clearRect(0, 0, canvas.width, canvas.height);
-
-  // *
-  // This line sets the default scroll position (but consequently locks the scroll). Helps those with large screens.
-
-  drawBricks();
-  drawBall();
-  drawPaddle();
-  drawScore();
-  drawLives();
-  collisionDetection();
-
-  if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
-    dx = -dx;
-  }
-  // *
-  if (y + dy < ballRadius) {
-    dy = -dy;
-  } else if (y + dy > canvas.height - ballRadius) {
-    if (x > paddleX && x < paddleX + paddleWidth) {
-      dy = -dy - 1;
-      dx += random(-3, 3); // (min,max) values from the random() function
-    } else {
-      lives--;
-      if (lives === 2 || lives === 1) {
-        blink();
-      }
-      if (!lives) {
-        alert("GAME OVER" + "\n" + "\n" + "YOUR SCORE: " + score);
-        document.location.reload();
-      } else {
-        // resets position of ball
-        x = canvas.width / 2;
-        y = canvas.height - 30;
-        // *
-        // flips direction of ball
-        dx = -dx;
-        dy = -dy;
-        // resets position of paddle
-        paddleX = (canvas.width - paddleWidth) / 2;
-      }
-    }
-  }
-
-  x += dx;
-  y += dy;
-
-  // *
-  // controls left/right keys for paddle
-  if (rightPressed && paddleX < canvas.width - (paddleWidth + 10)) {
-    paddleX += 15;
-  } else if (leftPressed && paddleX > 11) {
-    paddleX -= 15;
-  }
-
-  requestAnimationFrame(draw);
-}
-
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 document.addEventListener("mousemove", mouseMoveHandler, false);
@@ -225,6 +165,66 @@ function drawLives() {
   context.font = "18px Lucida Console, Courier, monospace;";
   context.fillStyle = "#016d0d";
   context.fillText("Lives: " + lives, canvas.width - 95, 20);
+}
+
+// this is where the magic happens
+function draw() {
+  context.clearRect(0, 0, canvas.width, canvas.height);
+
+  // *
+  // This line sets the default scroll position (but consequently locks the scroll). Helps those with large screens.
+
+  drawBricks();
+  drawBall();
+  drawPaddle();
+  drawScore();
+  drawLives();
+  collisionDetection();
+
+  if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
+    dx = -dx;
+  }
+  // *
+  if (y + dy < ballRadius) {
+    dy = -dy;
+  } else if (y + dy > canvas.height - ballRadius) {
+    if (x > paddleX && x < paddleX + paddleWidth) {
+      dy = -dy - 1;
+      dx += random(-3, 3); // (min,max) values from the random() function
+    } else {
+      lives--;
+      if (lives === 2 || lives === 1) {
+        blink();
+      }
+      if (!lives) {
+        alert("GAME OVER" + "\n" + "\n" + "YOUR SCORE: " + score);
+        document.location.reload();
+      } else {
+        // resets position of ball
+        x = canvas.width / 2;
+        y = canvas.height - 30;
+        // *
+        // flips direction of ball
+        dx = -dx;
+        dy = -dy;
+        // resets position of paddle
+        paddleX = (canvas.width - paddleWidth) / 2;
+      }
+    }
+  }
+
+  x += dx;
+  y += dy;
+
+  // *
+  // controls left/right keys for paddle
+  if (rightPressed && paddleX < canvas.width - (paddleWidth + 10)) {
+    paddleX += 15;
+  } else if (leftPressed && paddleX > 11) {
+    paddleX -= 15;
+  }
+
+  requestAnimationFrame(draw);
 }
 
 draw();
