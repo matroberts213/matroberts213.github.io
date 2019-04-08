@@ -171,9 +171,6 @@ function drawLives() {
 function draw() {
   context.clearRect(0, 0, canvas.width, canvas.height);
 
-  // *
-  // This line sets the default scroll position (but consequently locks the scroll). Helps those with large screens.
-
   drawBricks();
   drawBall();
   drawPaddle();
