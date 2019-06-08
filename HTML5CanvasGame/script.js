@@ -107,6 +107,8 @@ function collisionDetection() {
   for (var c = 0; c < brickColumnCount; c++) {
     for (var r = 0; r < brickRowCount; r++) {
       var b = bricks[c][r];
+      //* added golden brick variable gb
+      var gb = bricks[2][2];
       if (b.status == 1) {
         if (
           x > b.x &&
@@ -117,6 +119,16 @@ function collisionDetection() {
           dy = -dy;
           b.status = 0;
           score++;
+
+          //* increase lives by 2 if the ball is inside the golden brick position
+          if (
+            x > gb.x &&
+            x < gb.x + (brickWidth + 11) &&
+            y > gb.y &&
+            y < gb.y + (brickHeight + 11)
+          ) {
+            lives += 2;
+          }
 
           // *
           if (score == brickRowCount * brickColumnCount) {
@@ -165,6 +177,18 @@ function drawBricks() {
   for (var c = 0; c < brickColumnCount; c++) {
     for (var r = 0; r < brickRowCount; r++) {
       if (bricks[c][r].status == 1) {
+        if (bricks[2][2].status == 1) {
+          context.beginPath();
+          context.rect(
+            2 * (brickWidth + brickPadding) + brickOffsetLeft,
+            2 * (brickHeight + brickPadding) + brickOffsetTop,
+            brickWidth,
+            brickHeight
+          );
+          context.fillStyle = "#a89201";
+          context.fill();
+          context.closePath();
+        }
         var brickX = c * (brickWidth + brickPadding) + brickOffsetLeft;
         var brickY = r * (brickHeight + brickPadding) + brickOffsetTop;
         bricks[c][r].x = brickX;
