@@ -14,8 +14,8 @@ var paddleWidth = 120;
 var paddleX = (canvas.width - paddleWidth) / 2;
 var rightPressed = false;
 var leftPressed = false;
-var brickRowCount = 5;
-var brickColumnCount = 4;
+var brickRowCount = 4;
+var brickColumnCount = 5;
 var brickWidth = 80;
 var brickHeight = 20;
 var brickPadding = 10;
@@ -165,8 +165,8 @@ function drawBricks() {
   for (var c = 0; c < brickColumnCount; c++) {
     for (var r = 0; r < brickRowCount; r++) {
       if (bricks[c][r].status == 1) {
-        var brickX = r * (brickWidth + brickPadding) + brickOffsetLeft;
-        var brickY = c * (brickHeight + brickPadding) + brickOffsetTop;
+        var brickX = c * (brickWidth + brickPadding) + brickOffsetLeft;
+        var brickY = r * (brickHeight + brickPadding) + brickOffsetTop;
         bricks[c][r].x = brickX;
         bricks[c][r].y = brickY;
         context.beginPath();
