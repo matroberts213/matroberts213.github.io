@@ -72,13 +72,12 @@ function mouseMoveHandler(e) {
 window.addEventListener("keydown", pauseGameKeyHandler, false);
 
 //*
-// Key handler to activate pause function once space key is pressed
+// Key handler to activate pause function once key is pressed
 function pauseGameKeyHandler(e) {
   var keyCode = e.keyCode;
   switch (keyCode) {
     case 80: //p
       togglePause();
-
       break;
   }
 }
@@ -100,6 +99,22 @@ function pauseText() {
     canvas.width / 2,
     canvas.height / 2
   );
+}
+
+//* add a div on the page (used for the golden brick bonus)
+function addElement() {
+  var newDiv = document.createElement("div");
+  var newContent = document.createTextNode("+2 LIVES!");
+  newDiv.appendChild(newContent);
+  newDiv.setAttribute("id", "bonus");
+  var existingDiv = document.getElementById("myCanvas");
+  document.body.insertBefore(newDiv, existingDiv);
+}
+
+//* remove the added div (used for the golden brick bonus)
+function removeElement() {
+  var target = document.getElementById("bonus");
+  target.remove();
 }
 
 // detects collision with bricks
@@ -127,7 +142,12 @@ function collisionDetection() {
             y > gb.y &&
             y < gb.y + (brickHeight + 11)
           ) {
+            //text appears showing the bonus
             lives += 2;
+            // show the visual for it
+            addElement();
+            //make the visual dissappear
+            setTimeout(removeElement, 1500);
           }
 
           // *

@@ -6,6 +6,15 @@ body {
   width: 49%;
 }
 
+#bonus {
+  color: #016d0d;
+  position: fixed;
+  z-index: 1;
+  margin-left: 45%;
+  margin-top: 15%;
+  font-family: "Lucida Console", Monaco, monospace;
+}
+
 * {
   padding: 0;
   margin: 0;
